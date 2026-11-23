@@ -28,3 +28,9 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+## Project rules
+
+- Catalog data, filter/search logic and contact constants live in `src/lib/catalog.ts`; pages and components read from there so a future Shopify/product source swaps in one place.
+- The cart is client-side (`src/lib/cart.tsx`, localStorage) and checkout hands off to WhatsApp, because no payment/store backend is connected yet.
+- Site shell (Navbar, Footer, CartSheet, Toaster) wraps `<Outlet />` in `src/routes/__root.tsx`; every page sets its own head via `seo()` in `src/lib/seo.ts`.
