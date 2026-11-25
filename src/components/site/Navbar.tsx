@@ -1,18 +1,15 @@
-import { Link } from "@tanstack/react-router";
-import { Menu, MessageCircle, Search, ShoppingCart } from "lucide-react";
+import { Link, useLocation, useNavigate } from "@tanstack/react-router";
+import { Menu, MessageCircle, Phone, Search, ShoppingCart, UserRound } from "lucide-react";
 import { Logo } from "./Logo";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { useCart } from "@/lib/cart";
-import { whatsappLink } from "@/lib/catalog";
+import { CONTACT, whatsappLink } from "@/lib/catalog";
 
 export const NAV_LINKS = [
-  { to: "/", label: "Inicio" },
   { to: "/electronica", label: "Electrónica" },
   { to: "/informatica", label: "Informática" },
   { to: "/otros", label: "Otros" },
-  { to: "/taller-sat", label: "Taller SAT" },
-  { to: "/quienes-somos", label: "Quiénes Somos" },
   { to: "/contacto", label: "Contacto" },
 ] as const;
 
@@ -23,6 +20,8 @@ const activeClass = "text-foreground";
 export function Navbar() {
   const { count, setOpen } = useCart();
   const support = whatsappLink("Hola Inparts, necesito soporte técnico con una pieza.");
+  const navigate = useNavigate();
+  const isHome = useLocation({ select: (l) => l.pathname === "/" });
 
   return (
     <header className="sticky top-0 z-40 border-b border-border bg-background/80 backdrop-blur-xl">
@@ -35,16 +34,38 @@ export function Navbar() {
               to={l.to}
               className={linkClass}
               activeProps={{ className: activeClass }}
-              activeOptions={{ exact: l.to === "/" }}
+              
             >
               {l.label}
             </Link>
           ))}
         </nav>
         <div className="ml-auto flex items-center gap-1.5">
-          <Button variant="ghost" size="icon" asChild>
-            <Link to="/" hash="buscador" aria-label="Buscar piezas">
+          {!isHome && (
+            <form
+              role="search"
+              className="hidden items-center gap-2 rounded-lg border border-border bg-surface px-3 xl:flex"
+              onSubmit={(e) => {
+                e.preventDefault();
+                const q = String(new FormData(e.currentTarget).get("q") ?? "");
+                navigate({ to: "/buscar", search: { q, familia: "all" } });
+              }}
+            >
+              <Search className="size-4 text-muted-foreground" />
+              <input name="q" aria-label="Buscar repuesto" placeholder="MPN, marca o modelo" className="h-9 w-44 bg-transparent text-sm outline-none placeholder:text-muted-foreground" />
+            </form>
+          )}
+          <Button variant="ghost" size="icon" className={isHome ? "" : "xl:hidden"} asChild>
+            <Link to="/buscar" search={{ q: "", familia: "all" }} aria-label="Buscar piezas">
               <Search />
+            </Link>
+          </Button>
+          <a href="tel:+34949260860" className="hidden items-center gap-1.5 px-2 font-mono text-sm text-muted-foreground transition-colors hover:text-foreground md:inline-flex">
+            <Phone className="size-4" /> {CONTACT.phoneLandline}
+          </a>
+          <Button variant="ghost" size="icon" asChild>
+            <Link to="/contacto" aria-label="Acceso clientes">
+              <UserRound />
             </Link>
           </Button>
           <Button
@@ -81,7 +102,7 @@ export function Navbar() {
                     to={l.to}
                     className="rounded-md px-3 py-3 text-base text-muted-foreground hover:bg-accent hover:text-foreground"
                     activeProps={{ className: "bg-accent text-foreground" }}
-                    activeOptions={{ exact: l.to === "/" }}
+                    
                   >
                     {l.label}
                   </Link>

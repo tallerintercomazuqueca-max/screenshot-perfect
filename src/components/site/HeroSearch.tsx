@@ -1,14 +1,14 @@
 import { useId, useRef, useState } from "react";
 import { ArrowRight, CornerDownLeft, Search } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { FAMILIES, PARTS, formatPrice, suggestParts, type Family } from "@/lib/catalog";
+import { FAMILIES, PARTS, suggestParts, type Family } from "@/lib/catalog";
 
 interface Props {
   query: string;
   family: Family | "all";
   onQueryChange: (q: string) => void;
   onFamilyChange: (f: Family | "all") => void;
-  onSubmit: () => void;
+  onSubmit: (q: string) => void;
 }
 
 export function HeroSearch({ query, family, onQueryChange, onFamilyChange, onSubmit }: Props) {
@@ -23,7 +23,7 @@ export function HeroSearch({ query, family, onQueryChange, onFamilyChange, onSub
     onQueryChange(text);
     setFocused(false);
     inputRef.current?.blur();
-    onSubmit();
+    onSubmit(text);
   };
 
   return (
@@ -36,7 +36,7 @@ export function HeroSearch({ query, family, onQueryChange, onFamilyChange, onSub
           if (s) pick(s.mpn);
           else {
             setFocused(false);
-            onSubmit();
+            onSubmit(query);
           }
         }}
         className="relative"
@@ -69,7 +69,7 @@ export function HeroSearch({ query, family, onQueryChange, onFamilyChange, onSub
                 setFocused(false);
               }
             }}
-            placeholder="Referencia MPN o modelo · ej. EAX62064401, ThinkPad T470…"
+            placeholder="Referencia MPN, marca o modelo · ej. EAX62064401, ThinkPad T470…"
             aria-label="Buscar repuesto por MPN o modelo"
             role="combobox"
             aria-expanded={showList}
@@ -113,7 +113,6 @@ export function HeroSearch({ query, family, onQueryChange, onFamilyChange, onSub
                     {s.mpn} · {s.extractedFrom}
                   </p>
                 </div>
-                <span className="font-mono text-sm">{formatPrice(s.price)}</span>
                 {i === active && <CornerDownLeft className="size-4 text-muted-foreground" />}
               </li>
             ))}

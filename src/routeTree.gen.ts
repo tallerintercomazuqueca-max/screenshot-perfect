@@ -11,12 +11,16 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AvisoLegalRouteImport } from './routes/aviso-legal'
+import { Route as BuscarRouteImport } from './routes/buscar'
+import { Route as CondicionesCompraRouteImport } from './routes/condiciones-compra'
 import { Route as ContactoRouteImport } from './routes/contacto'
+import { Route as CookiesRouteImport } from './routes/cookies'
 import { Route as ElectronicaRouteImport } from './routes/electronica'
 import { Route as EnviosDevolucionesRouteImport } from './routes/envios-devoluciones'
 import { Route as GarantiasRouteImport } from './routes/garantias'
 import { Route as InformaticaRouteImport } from './routes/informatica'
 import { Route as OtrosRouteImport } from './routes/otros'
+import { Route as PrivacidadRouteImport } from './routes/privacidad'
 import { Route as QuienesSomosRouteImport } from './routes/quienes-somos'
 import { Route as TallerSatRouteImport } from './routes/taller-sat'
 
@@ -30,9 +34,24 @@ const AvisoLegalRoute = AvisoLegalRouteImport.update({
   path: '/aviso-legal',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BuscarRoute = BuscarRouteImport.update({
+  id: '/buscar',
+  path: '/buscar',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CondicionesCompraRoute = CondicionesCompraRouteImport.update({
+  id: '/condiciones-compra',
+  path: '/condiciones-compra',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ContactoRoute = ContactoRouteImport.update({
   id: '/contacto',
   path: '/contacto',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CookiesRoute = CookiesRouteImport.update({
+  id: '/cookies',
+  path: '/cookies',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ElectronicaRoute = ElectronicaRouteImport.update({
@@ -60,6 +79,11 @@ const OtrosRoute = OtrosRouteImport.update({
   path: '/otros',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PrivacidadRoute = PrivacidadRouteImport.update({
+  id: '/privacidad',
+  path: '/privacidad',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const QuienesSomosRoute = QuienesSomosRouteImport.update({
   id: '/quienes-somos',
   path: '/quienes-somos',
@@ -74,24 +98,32 @@ const TallerSatRoute = TallerSatRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/aviso-legal': typeof AvisoLegalRoute
+  '/buscar': typeof BuscarRoute
+  '/condiciones-compra': typeof CondicionesCompraRoute
   '/contacto': typeof ContactoRoute
+  '/cookies': typeof CookiesRoute
   '/electronica': typeof ElectronicaRoute
   '/envios-devoluciones': typeof EnviosDevolucionesRoute
   '/garantias': typeof GarantiasRoute
   '/informatica': typeof InformaticaRoute
   '/otros': typeof OtrosRoute
+  '/privacidad': typeof PrivacidadRoute
   '/quienes-somos': typeof QuienesSomosRoute
   '/taller-sat': typeof TallerSatRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/aviso-legal': typeof AvisoLegalRoute
+  '/buscar': typeof BuscarRoute
+  '/condiciones-compra': typeof CondicionesCompraRoute
   '/contacto': typeof ContactoRoute
+  '/cookies': typeof CookiesRoute
   '/electronica': typeof ElectronicaRoute
   '/envios-devoluciones': typeof EnviosDevolucionesRoute
   '/garantias': typeof GarantiasRoute
   '/informatica': typeof InformaticaRoute
   '/otros': typeof OtrosRoute
+  '/privacidad': typeof PrivacidadRoute
   '/quienes-somos': typeof QuienesSomosRoute
   '/taller-sat': typeof TallerSatRoute
 }
@@ -99,12 +131,16 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/aviso-legal': typeof AvisoLegalRoute
+  '/buscar': typeof BuscarRoute
+  '/condiciones-compra': typeof CondicionesCompraRoute
   '/contacto': typeof ContactoRoute
+  '/cookies': typeof CookiesRoute
   '/electronica': typeof ElectronicaRoute
   '/envios-devoluciones': typeof EnviosDevolucionesRoute
   '/garantias': typeof GarantiasRoute
   '/informatica': typeof InformaticaRoute
   '/otros': typeof OtrosRoute
+  '/privacidad': typeof PrivacidadRoute
   '/quienes-somos': typeof QuienesSomosRoute
   '/taller-sat': typeof TallerSatRoute
 }
@@ -113,36 +149,48 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/aviso-legal'
+    | '/buscar'
+    | '/condiciones-compra'
     | '/contacto'
+    | '/cookies'
     | '/electronica'
     | '/envios-devoluciones'
     | '/garantias'
     | '/informatica'
     | '/otros'
+    | '/privacidad'
     | '/quienes-somos'
     | '/taller-sat'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/aviso-legal'
+    | '/buscar'
+    | '/condiciones-compra'
     | '/contacto'
+    | '/cookies'
     | '/electronica'
     | '/envios-devoluciones'
     | '/garantias'
     | '/informatica'
     | '/otros'
+    | '/privacidad'
     | '/quienes-somos'
     | '/taller-sat'
   id:
     | '__root__'
     | '/'
     | '/aviso-legal'
+    | '/buscar'
+    | '/condiciones-compra'
     | '/contacto'
+    | '/cookies'
     | '/electronica'
     | '/envios-devoluciones'
     | '/garantias'
     | '/informatica'
     | '/otros'
+    | '/privacidad'
     | '/quienes-somos'
     | '/taller-sat'
   fileRoutesById: FileRoutesById
@@ -150,12 +198,16 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AvisoLegalRoute: typeof AvisoLegalRoute
+  BuscarRoute: typeof BuscarRoute
+  CondicionesCompraRoute: typeof CondicionesCompraRoute
   ContactoRoute: typeof ContactoRoute
+  CookiesRoute: typeof CookiesRoute
   ElectronicaRoute: typeof ElectronicaRoute
   EnviosDevolucionesRoute: typeof EnviosDevolucionesRoute
   GarantiasRoute: typeof GarantiasRoute
   InformaticaRoute: typeof InformaticaRoute
   OtrosRoute: typeof OtrosRoute
+  PrivacidadRoute: typeof PrivacidadRoute
   QuienesSomosRoute: typeof QuienesSomosRoute
   TallerSatRoute: typeof TallerSatRoute
 }
@@ -176,11 +228,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AvisoLegalRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/buscar': {
+      id: '/buscar'
+      path: '/buscar'
+      fullPath: '/buscar'
+      preLoaderRoute: typeof BuscarRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/condiciones-compra': {
+      id: '/condiciones-compra'
+      path: '/condiciones-compra'
+      fullPath: '/condiciones-compra'
+      preLoaderRoute: typeof CondicionesCompraRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/contacto': {
       id: '/contacto'
       path: '/contacto'
       fullPath: '/contacto'
       preLoaderRoute: typeof ContactoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cookies': {
+      id: '/cookies'
+      path: '/cookies'
+      fullPath: '/cookies'
+      preLoaderRoute: typeof CookiesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/electronica': {
@@ -218,6 +291,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof OtrosRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/privacidad': {
+      id: '/privacidad'
+      path: '/privacidad'
+      fullPath: '/privacidad'
+      preLoaderRoute: typeof PrivacidadRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/quienes-somos': {
       id: '/quienes-somos'
       path: '/quienes-somos'
@@ -238,12 +318,16 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AvisoLegalRoute: AvisoLegalRoute,
+  BuscarRoute: BuscarRoute,
+  CondicionesCompraRoute: CondicionesCompraRoute,
   ContactoRoute: ContactoRoute,
+  CookiesRoute: CookiesRoute,
   ElectronicaRoute: ElectronicaRoute,
   EnviosDevolucionesRoute: EnviosDevolucionesRoute,
   GarantiasRoute: GarantiasRoute,
   InformaticaRoute: InformaticaRoute,
   OtrosRoute: OtrosRoute,
+  PrivacidadRoute: PrivacidadRoute,
   QuienesSomosRoute: QuienesSomosRoute,
   TallerSatRoute: TallerSatRoute,
 }

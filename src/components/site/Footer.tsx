@@ -25,6 +25,11 @@ export function Footer() {
             <li><Link to="/aviso-legal" className="text-muted-foreground hover:text-foreground">Aviso Legal</Link></li>
             <li><Link to="/envios-devoluciones" className="text-muted-foreground hover:text-foreground">Envíos y Devoluciones</Link></li>
             <li><Link to="/garantias" className="text-muted-foreground hover:text-foreground">Garantías</Link></li>
+            <li><Link to="/condiciones-compra" className="text-muted-foreground hover:text-foreground">Condiciones de compra</Link></li>
+            <li><Link to="/privacidad" className="text-muted-foreground hover:text-foreground">Privacidad</Link></li>
+            <li><Link to="/cookies" className="text-muted-foreground hover:text-foreground">Cookies</Link></li>
+            <li><Link to="/quienes-somos" className="text-muted-foreground hover:text-foreground">Quiénes somos</Link></li>
+            <li><Link to="/taller-sat" className="text-muted-foreground hover:text-foreground">Taller SAT</Link></li>
           </ul>
           <p className="mt-4 text-xs text-muted-foreground">14 días de desistimiento</p>
         </div>

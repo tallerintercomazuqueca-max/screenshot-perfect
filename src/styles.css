@@ -187,3 +187,35 @@
 @utility animate-pulse-dot {
   animation: pulse-dot 2s ease-in-out infinite;
 }
+
+/* Ambient circuit animation (home hero) */
+@keyframes circuit-flow {
+  to {
+    stroke-dashoffset: -400;
+  }
+}
+@utility animate-circuit {
+  animation: circuit-flow 9s linear infinite;
+}
+@keyframes node-glow {
+  0%,
+  100% {
+    opacity: 0.25;
+  }
+  50% {
+    opacity: 0.9;
+  }
+}
+@utility animate-node {
+  animation: node-glow 4s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
